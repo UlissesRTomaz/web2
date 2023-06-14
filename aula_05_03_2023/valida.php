@@ -1,9 +1,11 @@
 <?php
     $valor1 = $_GET['valor1'];
     $valor2 = $_GET['valor2'];
-    $operacao = $_GET['operacao']
+    $operacao = $_GET['operacao'];
+    
     function calculo_basico($x, $y, $ope){
         //TO DO;
+        return 1;
     }
     $res = calculo_basico(4, 3, "+");
     function soma($x, $y){
