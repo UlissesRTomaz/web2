@@ -66,7 +66,7 @@ if (isset($_COOKIE['nome']) and isset($_COOKIE['veiculo']) and isset($_COOKIE['k
     $veiculo = $_COOKIE['veiculo'];
     $km = $_COOKIE['km'];
 else:
-    unset($_COOKIE['nome']);
+    unset($_COOKIE['nome']); // $_COOKIE = array();
     unset($_COOKIE['veiculo']);
     unset($_COOKIE['km']);
     header('Location: devolucao.php');
@@ -76,18 +76,6 @@ $custo_rodagem = $km * $auto[$veiculo]["custo"];
 $qtd_litros  = $km / $auto[$veiculo]["consumo"];
 $total =  $qtd_litros * PRECO_COMBUSTIVEL + $custo_rodagem;
 
-$pnome = explode(" ", $nome);
-
-$fp = fopen($pnome[0].'.txt', 'w');
-    if ($fp):
-        $conteudo = "$nome;$veiculo;$km";
-        $gravacao = fwrite($fp, $conteudo);
-        if (!$gravacao)
-            echo "Não foi possível gravar os dados";
-        fclose($fp);
-    else:
-        echo "Não foi possível criar o arquivo.";
-    endif;
 ?>
 
 <!DOCTYPE html>
@@ -99,15 +87,7 @@ $fp = fopen($pnome[0].'.txt', 'w');
     <title>Aluguel de Carros - Pagamento</title>
 </head>
 <body>
-    <h1>Ficha de Pagamento</h1>
-    <h2>Cliente: <?php print($nome); ?></h2>
-
-    <p>Consumo do veículo: <?php print($auto[$veiculo]["consumo"]); ?> (Km/l)</p>
-    <p>Custo por quilometro rodado: R$ <?php print(number_format($auto[$veiculo]["custo"], 2, ',', '.' )); ?>.</p>
-
-    <p>O automóvel <?php print($auto[$veiculo]["nome"]); ?> circulou por <?php print($km); ?> quilometros durante o período de aluguel a um custo de <?php print("R$ " . number_format($custo_rodagem, 2, ',', '.')); ?>. Consumiu <?php print(number_format($qtd_litros, 2, ',', '.')); ?> litro(s) de combustível a um preço de <?php print("R$ " . number_format(PRECO_COMBUSTIVEL, 2, ',', '.')); ?>. Perfazendo um total de <?php print("R$ " . number_format($qtd_litros * PRECO_COMBUSTIVEL, 2, ',', '.')); ?></p>
-
-    <h3>Valor a pagar: R$ <?php print(number_format($total, 2, ',', '.' )); ?>.</h3>
+    <h1>Ficha de Pagamento<?php print($nome); ?></h1>
     
 </body>
 </html>
