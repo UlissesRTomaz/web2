@@ -30,8 +30,8 @@
 
     $array_error[] = "Não houve erro, o upload foi bem sucedido.";
     $array_error[] = "O arquivo enviado excede o limite definido na diretiva upload_max_filesize do php.ini.";
-
-    echo $array_error[$msg];
+    header("Location: _index.php");
+    //echo $array_error[$msg];
 ?>
 
 </body>

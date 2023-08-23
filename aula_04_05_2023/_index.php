@@ -16,5 +16,7 @@
     <input type="submit" name="btn_enviar" value="Enviar" />
     </fieldset>
     </form>
+
+    <p>Exibir listagem dos arquivos <a href="report.php">enviados.</a></p>
 </body>
 </html>
